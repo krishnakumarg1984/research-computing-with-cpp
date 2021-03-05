@@ -1,0 +1,438 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="http://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Using Libraries</title>
+
+  <link href="/research-computing-with-cpp/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/js/lib/jquery-1.9.1.min",
+        googleAnalyticsIdsArray: [] //specify array of site specific id's NOT UCL generic UA-943297-1
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, people and more" class="search-form__input search-form__input--search" value="">
+						</div>
+						<input type="submit" name="sumbit" value="Go" class="btn search-form__input search-form__input--submit" />
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="index.php" class="masthead__link">UCL Home</a>
+						</li>
+						<li class="masthead__item"><a href="prospective-students.php" class="masthead__link">Prospective students</a>
+						</li>
+						<li class="masthead__item"><a href="current-students.php" class="masthead__link">Current students</a>
+						</li>
+						<li class="masthead__item"><a href="staff.php" class="masthead__link">Staff</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">PHAS0100: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+
+
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+ <li class="active"> <a href="/research-computing-with-cpp/01research/">Lecture 1: C++ for Research</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/01research/sec01Research.html">C++ in Research</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec02Git.html">Git</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec03CMake.html">CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec04CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec05CMakeIntermediate.html">Intermediate CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec06UnitTesting.html">Unit Testing</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Lecture 2: Modern C++ (1)</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01LanguageRecap.html">C++ language recap</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02OOConcepts.html">Object Oriented Review</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03EssentialReading.html">Essential Reading</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Lecture 3: Modern C++ (2)</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02SmartPointers.html">Smart Pointers</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03LambdaExpressions.html">Lambda expressions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04Exceptions.html">Error Handling</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Lecture 4: Modern C++ (3)</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01ProgramToInterfaces.html">Program To Interfaces</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec02Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03DependencyInjection.html">Dependency Injection</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04RAII.html">RAII Pattern</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec05ConstructionPatterns.html">Construction Patterns</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec06TemplatesIntro.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec07FunctionTemplates.html">Function Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec08ClassTemplates.html">Class Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec13SummaryOfPatterns.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Lecture 5: Including Libraries</a><ul> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec00Intro.html">Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec02LibraryBasics.html">Library Basics</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec02LinkingLibraries.html">Linking Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec03UsingLibraries.html">Using Libraries</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec04Examples.html">Examples</a> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/sec05Summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/06CodeQuality/">Lecture 6: Writing Quality Code</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06CodeQuality/sec01WhyCareAboutQuality.html">Why Care About Code Quality?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06CodeQuality/sec02DesigningQualityCode.html">Designing Quality Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06CodeQuality/sec03WritingQualityCode.html">Writing Quality Code</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07PerformanceProgramming/">Lecture 7: Performance Programming</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/07PerformanceProgramming/Sec04ConcurrencyProblems.html">Concurrency Problems</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/98Installation/">Installation</a><ul> </ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/">UCL</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/ISD">ISD</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services">Our services</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it">Research IT</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it/training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">PHAS0100</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h2>Using libraries</h2>
+
+<p>Now that we understand what libraries are and how we can access to them, let&#39;s
+see some practicalities about using them.</p>
+
+<h3>Package Managers (*nix)</h3>
+
+<p>Installing libraries using a Package Manager (Linux/Mac) has some advantages:</p>
+
+<ul>
+<li>they are pre-compiled,</li>
+<li>provide a Stable choice, and</li>
+<li>inter-dependencies work.</li>
+</ul>
+
+<p>For Linux you can use:</p>
+
+<ul>
+<li><code>sudo apt install</code> for debian based systems,</li>
+<li><code>sudo dnf install</code> for rpm systems,</li>
+<li>or whichever <a href="https://en.wikipedia.org/wiki/Package_manager">package manager</a> your system uses.</li>
+</ul>
+
+<p>macOS has also many options, though they need to be installed, for example:</p>
+
+<ul>
+<li><a href="https://brew.sh/">homebrew</a>: <code>brew install</code></li>
+<li><a href="https://www.macports.org/">MacPorts</a>: <code>sudo port install</code></li>
+</ul>
+
+<h3>Windows</h3>
+
+<p>On Windows, the libraries typically are:</p>
+
+<ul>
+<li>on randomly installed locations, or</li>
+<li>in system folders, or</li>
+<li>in the developer&#39;s folders, or</li>
+<li>in the build folder.</li>
+</ul>
+
+<p>The absence of a &quot;standard&quot; approach makes that our machine could become
+full of mixed libraries. Be careful and try to keep your machine clean.
+We suggest you invest some time exploring Windows package managers such as
+<a href="http://chocolatey.org">Chocolatey</a> and <a href="https://docs.microsoft.com/en-us/windows/package-manager/">winget</a></p>
+
+<h3>Package Managers - summary</h3>
+
+<p>In summary, if you can use standard versions of 3rd party libraries, then
+Package Managers are a good way to go. You just need to specify what versions
+your program depends on so your collaborator can install it too.</p>
+
+<h4>Problems</h4>
+
+<p>However, you may encounter some problems. What happens if you
+find a bug in a library?</p>
+
+<p>Is there an easy way to update? Does that update produces a
+know on effect? (e.g., cascading updates and produces inconsistent
+development environments)</p>
+
+<h3>Build Your Own</h3>
+
+<p>An alternative solution to use &quot;stable&quot; libraries provided by your system is
+to build your own.</p>
+
+<p>This can be done on two ways:</p>
+
+<ul>
+<li>Using External / Individual builds
+
+<ul>
+<li>Build each dependencies externally and</li>
+<li>Point your software at those packages</li>
+</ul></li>
+<li>SuperBuild / Meta-Build
+
+<ul>
+<li>Write code to download and build all dependencies</li>
+<li>Storing the correct version numbers in the code</li>
+</ul></li>
+</ul>
+
+<p>C++ package managers makes it easy to generate SuperBuilds.</p>
+
+<p>Let&#39;s see examples for each case:</p>
+
+<h4>External / Individual Build</h4>
+
+<p>For example, let&#39;s say that we&#39;ve got builds for a particular version of the
+ITK and VTK libraries on a particular directory of our computer <code>C:\build</code> and
+this is how our tree looks:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">C:\build\ITK-v1
+C:\build\ITK-v1-build
+C:\build\ITK-v1-install
+C:\build\VTK-v2
+C:\build\VTK-v2-build
+C:\build\VTK-v2-install
+C:\build\MyProject
+C:\build\MyProject-build
+</code></pre></div>
+<p>Our project <code>MyProject-build</code> needs to know the location of ITK and VTK install
+folder. We will see in the <a href="./sec04Examples.html">next page</a> how to do so.</p>
+
+<h4>Meta-Build / Super-Build</h4>
+
+<p>Alternatively, we could set our project to download and build all the dependencies
+within our project, so our tree would look now like:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">C:\build\MyProject
+C:\build\MyProject-SuperBuild\ITK\src
+C:\build\MyProject-SuperBuild\ITK\build
+C:\build\MyProject-SuperBuild\ITK\install
+C:\build\MyProject-SuperBuild\VTK\src
+C:\build\MyProject-SuperBuild\VTK\build
+C:\build\MyProject-SuperBuild\VTK\install
+C:\build\MyProject-SuperBuild\MyProject-build
+</code></pre></div>
+<p><code>MyProject-build</code> knows now the location of ITK and VTK as were compiled by itself.</p>
+
+<h4>Pro&#39;s / Con&#39;s</h4>
+
+<p>Each methods has its own advantages and disadvantages, and you should choose the
+most appropriate for your use case.</p>
+
+<p>External Build:</p>
+
+<ul>
+<li>Pro&#39;s - build each dependency once</li>
+<li>Con&#39;s - collaborators will do this inconsistently</li>
+<li>Con&#39;s - how to manage multiple versions of all dependencies</li>
+</ul>
+
+<p>Meta Build:</p>
+
+<ul>
+<li>Pro&#39;s - all documented, all self-contained, easier to share</li>
+<li>Con&#39;s - Slow build? Not a problem if you only run <code>make</code> in sub-folder
+<code>MyProject-build</code>. (You can also use <a href="https://ccache.dev/"><code>ccache</code></a> on clean builds to
+speed compilation up).</li>
+</ul>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Facilities</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/departments/faculties">Faculties and departments</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/library/">Library</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/museums">Museums and Collections</a></li>
+					<li class="footer__item"><a href="http://www.thebloomsbury.com/">UCL Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/maps">Maps and buildings</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+                <h2 class="as-h5">Locations</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/australia">UCL Australia</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/qatar">UCL Qatar</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/global">UCL Global</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-3">
+                <h2 class="as-h5">Connect with us</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/enterprise">Businesses</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/media">Media Relations</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/hr/jobs/">Jobs</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/makeyourmark">Give to UCL</a></li>
+				</ul>
+
+      </article>
+  
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2021-03-05 09:20:43 +0000 UCL</li>
+      <li class="text-muted small"><a href="#">Disclaimer</a>
+      </li>
+      <li class="text-muted small"><a href="#">Freedom of Information</a>
+      </li>
+      <li class="text-muted small"><a href="#">Accessibility</a>
+      </li>
+      <li class="text-muted small"><a href="#">Privacy</a>
+      </li>
+      <li class="text-muted small"><a href="#">Cookies</a>
+      </li>
+      <li class="text-muted small"><a href="#">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+

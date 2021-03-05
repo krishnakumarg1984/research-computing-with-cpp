@@ -1,0 +1,414 @@
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="lt-ie9 lt-ie8 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="lt-ie9 no-js"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset=utf-8 />
+    <meta name="author" content="UCL" />
+    <meta name="description" content="UCL Homepage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- social meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@uclnews">
+    <meta name="twitter:title" content="UCL - London's Global University">
+    <meta name="twitter:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students.">
+    <meta name="twitter:creator" content="@UCLWAMS">
+    <meta name="twitter:image:src" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png">
+    <meta property="og:image" content="http://www.ucl.ac.uk/visual-identity/logos/standalone.png" />
+    <meta property="og:title" content="UCL - London's Global University" />
+    <meta property="og:url" content="http://www.ucl.ac.uk" />
+    <meta property="og:site_name" content="UCL" />
+    <meta property="og:description" content="UCL (University College London) is London's leading multidisciplinary university, with 8,000 staff and 25,000 students." />
+    <meta property="og:type" content="website" />
+    <meta property="og:profile_id" content="uclofficial" />
+    <!-- end social meta -->
+
+  <title>Concurrency Problems</title>
+
+  <link href="/research-computing-with-cpp/css/screen.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/research-computing-with-cpp/css/jekyll-styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/local_styles.css" rel="stylesheet" type="text/css">
+  <link href="/research-computing-with-cpp/site-styles/ipython.css" rel="stylesheet" type="text/css">
+
+  <link rel="shortcut icon" href="/research-computing-with-cpp/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/research-computing-with-cpp/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/research-computing-with-cpp/favicon-144.png">
+
+  <script src="/research-computing-with-cpp/js/lib/modernizr-custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+    <script>
+      var cuttingTheMustard = document.querySelector && window.localStorage && window.addEventListener;
+
+      Modernizr.load({
+        //cutting the mustard as used by the BBC
+        test: cuttingTheMustard
+        //if old browser load the shiv
+        ,
+        nope: [
+          '/research-computing-with-cpp/js/lib/html5shiv-printshiv.min.js', '/research-computing-with-cpp/js/lib/respond.min.js'
+        ]
+      });
+      //set conditional assets for main.js
+      var globalSiteSpecificVars = {
+        pathToJquery: "/research-computing-with-cpp/js/lib/jquery-1.9.1.min",
+        googleAnalyticsIdsArray: [] //specify array of site specific id's NOT UCL generic UA-943297-1
+      }
+      if (cuttingTheMustard) {
+        globalSiteSpecificVars.pathToJquery = '/research-computing-with-cpp/js/lib/jquery-2.1.1.min';
+      }
+    </script>
+    <script src="/research-computing-with-cpp/js/lib/require.min.js"></script>
+    <script src="/research-computing-with-cpp/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+</head>
+
+<body id="index" class="layout-vertical layout-vertical--nav-1col">
+
+  <header class="header header--desktop">
+
+  <a class="header__close" href="#">
+    <img src="/research-computing-with-cpp/images/close.png" class="lazy" data-src="//static.ucl.ac.uk/indigo/images/close.png" alt="X" />Close</a>
+
+  <div class="masthead">
+
+  <div class="wrapper clearfix">
+
+      <div class="masthead__search">
+					<form action="#" method="get">
+						<div class="search-form">
+							<input type="search" placeholder="Search UCL websites, people and more" class="search-form__input search-form__input--search" value="">
+						</div>
+						<input type="submit" name="sumbit" value="Go" class="btn search-form__input search-form__input--submit" />
+					</form>
+				</div>
+
+
+				<nav class="masthead__nav m-clear">
+					<ul class="masthead__list">
+						<li class="masthead__item"><a href="index.php" class="masthead__link">UCL Home</a>
+						</li>
+						<li class="masthead__item"><a href="prospective-students.php" class="masthead__link">Prospective students</a>
+						</li>
+						<li class="masthead__item"><a href="current-students.php" class="masthead__link">Current students</a>
+						</li>
+						<li class="masthead__item"><a href="staff.php" class="masthead__link">Staff</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+</div><!-- end .masthead -->
+
+
+  <div class="wrapper">
+
+    <div class="photograph">
+  <div class="brand">
+    <p class="brand__heading">PHAS0100: Research Computing with C++</p>
+    <a href="/" class="brand__link"><span class="visually-hidden">Home</span></a>
+    <img src="//cdn.ucl.ac.uk/img/blank.gif" data-src="//static.ucl.ac.uk/indigo/images/ucl-logo.svg" alt="UCL logo" id="logo" class="brand__logo lazy">  
+  </div>
+</div>
+
+
+    <div class="sidebar">
+
+      <nav class="nav nav--mobile">
+        <ul>
+          
+
+
+
+
+        </ul>
+      </nav>
+
+      <nav class="nav nav--left">
+        <ul>
+          
+
+ <li class="active"> <a href="/research-computing-with-cpp/01research/">Lecture 1: C++ for Research</a><ul><li class="inactive"> <a href="/research-computing-with-cpp/01research/sec01Research.html">C++ in Research</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec02Git.html">Git</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec03CMake.html">CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec04CMakeBasics.html">CMake Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec05CMakeIntermediate.html">Intermediate CMake</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/01research/sec06UnitTesting.html">Unit Testing</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/02cpp1/">Lecture 2: Modern C++ (1)</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec01LanguageRecap.html">C++ language recap</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec02OOConcepts.html">Object Oriented Review</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/02cpp1/sec03EssentialReading.html">Essential Reading</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/03cpp2/">Lecture 3: Modern C++ (2)</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec01StandardLibrary.html">C++ Standard Library</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec02SmartPointers.html">Smart Pointers</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec03LambdaExpressions.html">Lambda expressions</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/03cpp2/sec04Exceptions.html">Error Handling</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/04cpp3/">Lecture 4: Modern C++ (3)</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec01ProgramToInterfaces.html">Program To Interfaces</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec02Inheritance.html">Inheritance</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec03DependencyInjection.html">Dependency Injection</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec04RAII.html">RAII Pattern</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec05ConstructionPatterns.html">Construction Patterns</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec06TemplatesIntro.html">Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec07FunctionTemplates.html">Function Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec08ClassTemplates.html">Class Templates</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/04cpp3/sec13SummaryOfPatterns.html">Summary</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/05libraries/">Lecture 5: Including Libraries</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec00Intro.html">Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec01ChoosingLibraries.html">Choosing Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec02LibraryBasics.html">Library Basics</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec02LinkingLibraries.html">Linking Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec03UsingLibraries.html">Using Libraries</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec04Examples.html">Examples</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/05libraries/sec05Summary.html">Summary</a> </li></ul> </li> <li class="active"> <a href="/research-computing-with-cpp/06CodeQuality/">Lecture 6: Writing Quality Code</a><ul> <li class="inactive"> <a href="/research-computing-with-cpp/06CodeQuality/sec01WhyCareAboutQuality.html">Why Care About Code Quality?</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06CodeQuality/sec02DesigningQualityCode.html">Designing Quality Code</a> </li> <li class="inactive"> <a href="/research-computing-with-cpp/06CodeQuality/sec03WritingQualityCode.html">Writing Quality Code</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/07PerformanceProgramming/">Lecture 7: Performance Programming</a><ul> <li class="active"> <a href="/research-computing-with-cpp/07PerformanceProgramming/Sec04ConcurrencyProblems.html">Concurrency Problems</a> </li> </ul> </li> <li class="active"> <a href="/research-computing-with-cpp/98Installation/">Installation</a><ul> </ul> </li> 
+
+        </ul>
+      </nav>
+
+    </div>
+    <!-- end .sidebar -->
+
+    <nav class="nav nav--top">
+      <ul>
+        
+      </ul>
+    </nav>
+
+  </div>
+  <!-- end .wrapper -->
+
+  </header>
+  <!-- end .header -->
+
+  <div class="site-content wrapper">
+
+    <header class="header header--mobile default-header">
+      <a class="header__open" href="#">
+        <img src="/research-computing-with-cpp/images/ucl-menu.svg" alt="Menu" />
+      </a>
+    </header>
+
+    <div class="site-content__inner clearfix">
+      <div class="site-content__body">
+
+          
+            <nav class="breadcrumb clearfix">
+              <ul class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/">UCL</a></li>
+
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/ISD">ISD</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services">Our services</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it">Research IT</a></li>
+  
+    <li class="breadcrumb__item"><a href="http://www.ucl.ac.uk/isd/services/research-it/training">Training</a></li>
+  
+
+<li class="breadcrumb__item"><a href="/research-computing-with-cpp/">PHAS0100</a></li>
+
+
+
+              </ul>
+            </nav>
+           <div class="site-content__main">
+            
+            
+          
+          
+
+    <h2>Issues with concurrency</h2>
+
+<p>Running a program with several concurrent threads of execution can encounter several issues that are not present when running a single thread. These problems can include</p>
+
+<ul>
+<li>Deadlock: the system is locked, not doing any work and not changing state.</li>
+<li>Livelock: the system is apparently doing <em>something</em>, changing state, but no work is being done.</li>
+<li>Resource Starvation: one or more of the threads is unable to perform work, being unable to access a necessary resource.</li>
+<li>Race Condition: a thread ensures an action is possible, but this is not longer the case when the action is attempted, due to another thread.</li>
+</ul>
+
+<h2>Dining Philosophers</h2>
+
+<p>A classical computer science analogy to illustrate issues with concurrency and resource contention.</p>
+
+<h3>The set up</h3>
+
+<p>Five hungry yet contemplative philosophers are seated around a table. In front of each of them is a bowl of noodles. In between each of them is a single chopstick. The philosophers are holding one of their famous <em>symposia</em>, a party for eating and thinking. Each philosopher will alternate between thinking and eating. To eat, a philosopher needs to have hold of <em>both</em> chopsticks. Crucially, this means that not all of the philosophers can eat at the same time.</p>
+
+<p><img src="dining_philosophers2.png" alt="Dining philosophers"></p>
+
+<p>A fuller explanation of the Dining Philosphers problem can be found on <a href="https://en.wikipedia.org/wiki/Dining_philosophers_problem">Wikipedia</a>.</p>
+
+<h2>Deadlock</h2>
+
+<p>It is easy for the philosophers to get into what is called a deadlocked state. In the analogy, each philosopher is determined to eat, and picks up the chopstick to their right, and is unwilling to put it down until after they have eaten. They are each left holding exactly one chopstick each, and are also left hungry, each unwilling to put down the chopstick they have hold of.</p>
+
+<p>In a concurrent computer system this same deadlock can also occur. If there are <em>n</em> worker threads, each requesting two of <em>n</em> resources, then they can easily end up in a state where each worker has one of the two resources they need, and no work is done. Because of this, the state is referred to as being locked. The computer system is also not changing state, so this is referred to as a deadlock.</p>
+
+<h3>Try and wait</h3>
+
+<p>A simple solution to a deadlock is to implement a try-and-wait algorithm.</p>
+
+<p>For the philosophers, this means trying to eat using both chopsticks. If they are, great!, they get to eat. If not, then put down any chopsticks you may have in hand, wait a period of time and repeat.</p>
+
+<p>For the computer system, the procedure is very similar. Try to acquire the necessary resources, use them if available, otherwise free them for use by others and wait for some period of time before trying again.</p>
+
+<p>In both cases, this breaks the time symmetry of the problem. No longer are all the workers or philosphers in the same state for ever more, something is changing, and work gets done.</p>
+
+<h2>Livelock</h2>
+
+<p>Or does it? The try-and-wait algorithm might end up with all of the philosophers picking up one chopstick simultaneously, realising the other is not available, and putting it back down again without eating. They all wait for the same length of time, and try again.</p>
+
+<p>This is called a livelock. Just like a deadlock, it is a situation in which no productive work is being done, hence a &#39;lock&#39;. However, the state of the philosophers (or computer system) is continually changing, so it looks to an observer or program user that something is happening.</p>
+
+<h3>Resource hierarchy</h3>
+
+<p>One factor that causes the livelock for our dining philosophers ist that the situation is still symmetric around the table. They can all perform the same action at and end up getting nowhere. A solution to this is to break the symmetry around the table. This can be done be introducing a resource hierarchy. In the case of the philosophers, they are labelled P1 to P5 around the table. The chopsticks are also labelled C1 to C5, so that philosopher P1 is seated between chopsticks C1 and C2, and so on around the table until philosopher P5, who is seated between chopsticks C5 and C1. The rules of the resource hierarchy then state that each philosopher can only pick up their higher numbered chopstick once they have picked up the lower numbered one.</p>
+
+<p><img src="dining_philosophers_n.png" alt="Dining philosophers resource hierarchy"></p>
+
+<p>How does this prevent the livelock? Each philosopher P<em>i</em> goes to pick up chopstick C<em>i</em>, except P5, who has to pick up C1 before C5. This means that P4 can now pick up both C4 and C5, eat and put down C4, allowing P3 to eat. Eventually P1 is able to eat using C1 and C2, places them down and P5 can finally eat.</p>
+
+<h2>Resource starvation</h2>
+
+<p>This works well enough, unless philosopher P4 is once again holding C4 and C5 at the moment C1 becomes free. It could occur that P5 never gets to eat. In this case the worker thread equivalent to P5 is said to be suffering from resource starvation. While work get done (philosophers get fed), this situation is still far from ideal as it reduces the parallelism and overall throughput of the entire system.</p>
+
+<h2>Race condition</h2>
+
+<p>Another problem that may occur in concurrent programs is that of race conditions. These occur when one thread checks if a resource is available, is interrupted by another that makes that resource unavailable, resumes and is unable to complete the intended action. The effect of this can be anything from starving one of the workers (as above) to causing the entire program or system to crash.</p>
+
+<p>In the case of our philosophers, P3, wants to eat. They check that chopsticks C3 and C4 are available, and picks up C3. In the meantime, P4 has grabbed C4. What happens when P3 tries to pick up the chopstick that is no longer there? In the case of the philosophers, there would no doubt be a full and frank exchange of views. </p>
+
+<h3>Waiter/arbitrator</h3>
+
+<p>One solution that race conditions is to use an arbitrator for access to the contended resources. In the case of the dining philosophers, this can be thought of as a waiter whom the philosophers ask permission to pick up both their chopsticks. Only one is allowed to pick up chopsticks at a time, and the waiter will not allow another to attempt to do so until the previous philosopher has their chopsticks firmly in hand.</p>
+
+<p>The waiter can also resolve the issue of resource starvation by ensuring that no philosopher is allowed to go too long without getting to pick up chopsticks and eat.</p>
+
+<p>In a real computer system, the arbitrator will do much the same thing, controlling access by the worker threads to ensure that access is performed in an orderely fashion, and potentially preventing resource starvation.</p>
+
+<p>In the case of the computer model of the dining philosophers, the arbitrator can be implemented as a mutex.</p>
+
+<h2>Mutex</h2>
+
+<p>A mutex is an object that is shared between threads which allows only one thread to pass a certain point at any one time. The name is short for <em>mut</em>ual <em>ex</em>clusion, and might also be known as a lock.</p>
+
+<p>A mutex protects access to what is known as a critical section to only one worker thread at a time. In the case of the dining philosophers, this critical section is the action of picking up chopsticks. The worker thread attempts to access the critical section. If no other worker is within, the mutex will allow the worker thread to proceed, perform the actions of the critical section and crucially to release the mutex lock when it is finished. This allows any other thread that might be waiting to proceed into the critical section.</p>
+
+<h3><code>std::mutex</code></h3>
+
+<p>Introduced in C++11.</p>
+
+<p>The <code>std::mutex</code> class provides a minimal, portable interface to the underlying operating system mutexes. It can be included in your code using the <code>#include &lt;mutex&gt;</code> standard header inclusion. The base C++ version provides the following member functions:
+* <code>mutex( )</code>
+  * default constructor
+* <code>void lock( )</code>
+  * locks the mutex, blocks the calling code if the mutex is not available
+* <code>bool try_lock( )</code>
+  * tries to lock the mutex, returning false if the mutex is not available
+* <code>unlock( )</code>
+  * unlocks the mutex</p>
+
+<p>One important point to consider is that due to the usual implementation, <code>std::mutex</code>es cannot be used in a <code>std::vector</code> or any other container that requires move or copy semantics. This might seem an obvious way to store several mutexes restricting access to several critical sections, but will cause compilation errors when the compiler tries to generate the templated code for the <code>std::vector&lt;std::mutex&gt;</code> type.</p>
+
+<h2>Atomicity</h2>
+
+<p>Another important concept in avoiding problems such as race conditions is atomicity. An atomic operation is one that cannot be interrupted. If our philosophers were able to atomically check and pickup both chopsticks, then there would never be a risk of a race condition.</p>
+
+<p>An example of a race condition that is prevented by atomic operations is if two threads were trying to increment the value of the same location in memory. Most computers will increment a memory value by reading from the physical memory and storing the value in a register, running the increment operation on that register, and then writing the value back to the memory. If this operation is not atomic, thread 1 might read the value 2, store it and then get interrupted by thread 2. Thread 2, reads the value 2, increments it to 3, and stores that value to memory. Thread 1 then resumes, increments 2 to 3 and stores that value to memory. When two threads have each incremented that memory location by 1, the user might hope that the value has gone from 2 to 4, being incremented twice. As we can see, that is not what happened. An atomic increment operation would have prevented this.</p>
+
+<h3><code>std::atomic</code></h3>
+
+<p>This is a template that ensures that access to a variable is atomic. It can be included in your code using the <code>#include &lt;atomic&gt;</code> standard header inclusion.</p>
+
+<p>The header also includes atomic versions of the built-in <code>bool</code> and integer (<code>char</code>, <code>int</code>, <code>long</code>) types enforcing atomic access, arithmetic and incrementing.</p>
+
+<h2>Other standard concurrency problems</h2>
+
+<p>The dining philosophers problem is just one of several used to illustrate issues that might occur in concurrent execution of a computer program. Others include:
+* Cigarette smokers problem
+* Producers-consumers problem
+* Readers-writers problem
+* Sleeping barber problem</p>
+
+<p>For more details Wikipedia provides a good explanation of these problems at a level appropriate for this course. </p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end .site-content -->
+
+  <footer class="footer wrapper">
+  <div class="footer__inner clearfix">
+             <article class="block block--col-1">
+                <h2 class="as-h5">Facilities</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/departments/faculties">Faculties and departments</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/library/">Library</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/museums">Museums and Collections</a></li>
+					<li class="footer__item"><a href="http://www.thebloomsbury.com/">UCL Bloomsbury Theatre</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/maps">Maps and buildings</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-2">
+                <h2 class="as-h5">Locations</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/london">UCL and London</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/australia">UCL Australia</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/qatar">UCL Qatar</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/global">UCL Global</a></li>
+				</ul>
+            </article>
+            <article class="block block--col-3">
+                <h2 class="as-h5">Connect with us</h2>
+                <ul class="footer__list list-unstyled">
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/alumni">Alumni</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/enterprise">Businesses</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/media">Media Relations</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/hr/jobs/">Jobs</a></li>
+					<li class="footer__item"><a href="http://www.ucl.ac.uk/makeyourmark">Give to UCL</a></li>
+				</ul>
+
+      </article>
+  
+    <hr class="clear">
+    <ul class="footer__list list-unstyled zero-bottom">
+      <li class="footer__item text-muted small">University College London,&nbsp;Gower Street,&nbsp;London,&nbsp;WC1E 6BT&nbsp;Tel:&nbsp;+44&nbsp;(0)&nbsp;20 7679 2000</li>
+    </ul>
+    <ul class="list-inline footer__list list-unstyled list-inline--divided">
+      <li class="text-muted small">Copyright © 2021-03-05 09:20:43 +0000 UCL</li>
+      <li class="text-muted small"><a href="#">Disclaimer</a>
+      </li>
+      <li class="text-muted small"><a href="#">Freedom of Information</a>
+      </li>
+      <li class="text-muted small"><a href="#">Accessibility</a>
+      </li>
+      <li class="text-muted small"><a href="#">Privacy</a>
+      </li>
+      <li class="text-muted small"><a href="#">Cookies</a>
+      </li>
+      <li class="text-muted small"><a href="#">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+
+  <script src="/research-computing-with-cpp/js/lib/require.min.js"></script>
+  <script src="/research-computing-with-cpp/js/main.js"></script>
+    <script>
+      require.config({
+        baseUrl: '/research-computing-with-cpp/js/lib'
+      });
+        require(["app/general", "app/searchWithAutoComplete", "app/tabs"]);//load the default stuff
+    </script>
+
+</body>
+
+</html>
+
